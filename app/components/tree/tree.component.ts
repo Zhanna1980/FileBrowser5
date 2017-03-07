@@ -19,6 +19,10 @@ export class TreeComponentController {
         this.showChildren = !this.showChildren;
     }
 
+    onFolderNameClick(folder: any) {
+        this.fsService.setCurrentFolder(folder);
+    }
+
 
     // select(contact) {
     //     this.contactService.activate(contact);

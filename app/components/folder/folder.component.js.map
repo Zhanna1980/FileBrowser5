@@ -1,1 +1,1 @@
-{"version":3,"file":"folder.component.js","sourceRoot":"","sources":["folder.component.ts"],"names":[],"mappings":"AAAA;;GAEG"}
+{"version":3,"file":"folder.component.js","sourceRoot":"","sources":["folder.component.ts"],"names":[],"mappings":"AAAA;;GAEG;;AAEH,2BAA0B,kBAAkB,CAAC,CAAA;AAG7C;IAEI,mCAAoB,SAAoB;QAApB,cAAS,GAAT,SAAS,CAAW;IAExC,CAAC;IAEL,gCAAC;AAAD,CAAC,AAND,IAMC;AANY,iCAAyB,4BAMrC,CAAA;AAED,sBAAS,CAAC,SAAS,CAAC,QAAQ,EAAE;IAC1B,WAAW,EAAE,8CAA8C;IAC3D,UAAU,EAAE,yBAAyB;IACrC,QAAQ,EAAE;QACN,IAAI,EAAE,GAAG;KACZ;CACJ,CAAC,CAAC"}

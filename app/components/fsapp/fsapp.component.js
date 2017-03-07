@@ -13,14 +13,4 @@ app_module_1.AppModule.component('fsApp', {
     controller: FsAppController,
     templateUrl: 'app/components/fsapp/fsapp.template.html',
 });
-// class AppController {
-//     // onConactSelected(contact) {
-//     //     this.current = contact;
-//     // }
-// }
-//
-// appModule.component("myApp", {
-//     controller: AppController,
-//     templateUrl: "app.component.html",
-// });
 //# sourceMappingURL=fsapp.component.js.map

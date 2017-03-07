@@ -12,6 +12,9 @@ var TreeComponentController = (function () {
     TreeComponentController.prototype.toggleChildren = function () {
         this.showChildren = !this.showChildren;
     };
+    TreeComponentController.prototype.onFolderNameClick = function (folder) {
+        this.fsService.setCurrentFolder(folder);
+    };
     return TreeComponentController;
 }());
 exports.TreeComponentController = TreeComponentController;
