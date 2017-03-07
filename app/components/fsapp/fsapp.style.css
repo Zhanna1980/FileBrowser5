@@ -1,0 +1,9 @@
+fs-app {
+    display: flex;
+    flex-flow: row nowrap;
+    align-content: flex-start;
+    height: 100%;
+    background-color: green;
+    font-size: 2em;
+
+}

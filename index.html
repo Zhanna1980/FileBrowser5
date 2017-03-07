@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FileBrowser5</title>
+    <link rel="stylesheet" href="app/components/content/content.style.css">
+    <link rel="stylesheet" href="app/components/file/file.style.css">
+    <link rel="stylesheet" href="app/components/folder/folder.style.css">
+    <link rel="stylesheet" href="app/components/tree/tree.style.css">
+    <link rel="stylesheet" href="app/components/contextMenu/contextMenu.style.css">
+    <link rel="stylesheet" href="app/components/fsapp/fsapp.style.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <fs-app></fs-app>
+
+    <script src="node_modules/systemjs/dist/system.js"></script>
+    <script src="system.config.js"></script>
+    <script>
+        SystemJS.config(systemJsConfig);
+        SystemJS.import('main.js');
+    </script>
+</body>
+</html>

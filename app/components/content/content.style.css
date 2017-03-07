@@ -1,0 +1,24 @@
+content {
+    position: relative;
+    background-color: lightblue;
+    width: 70%;
+    min-width: 100px;
+    overflow: auto;
+    font-size: 1em;
+    line-height: 30px;
+}
+
+.contentItem{
+    display: inline-block;
+    margin: 15px;
+    text-align: center;
+    cursor: pointer;
+    user-select: none;
+}
+
+.contentItem>div{
+    width: 150px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
