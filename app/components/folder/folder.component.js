@@ -11,7 +11,7 @@ var FolderComponentController = (function () {
 }());
 exports.FolderComponentController = FolderComponentController;
 app_module_1.AppModule.component('folder', {
-    templateUrl: 'app/components/content/content.template.html',
+    templateUrl: 'app/components/folder/folder.template.html',
     controller: FolderComponentController,
     bindings: {
         item: '<'

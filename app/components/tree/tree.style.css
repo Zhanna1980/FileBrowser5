@@ -23,10 +23,19 @@ div.image {
     text-align: right;
     padding: 0px;
     vertical-align: middle;
+    color: blue;
 }
 
 div.folderName {
     display: inline-block;
     margin-left: 15px;
     vertical-align: middle;
+}
+
+div.image.expanded::before {
+    content: '-';
+}
+
+div.image.collapsed::before {
+    content: '+';
 }

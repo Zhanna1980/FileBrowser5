@@ -1,9 +1,14 @@
 fs-app {
+    width: 100%;
+    height: 100%;
+}
+
+fs-app .container {
     display: flex;
     flex-flow: row nowrap;
     align-content: flex-start;
     height: 100%;
     background-color: green;
     font-size: 2em;
-
 }
+

@@ -25,10 +25,6 @@ var FsService = (function () {
         return this.currentFolder;
     };
     FsService.prototype.setCurrentFolder = function (item) {
-        //const item = this.findItemById(id);
-        // if (this.isFolder(item)) {
-        //     this.currentFolder = item;
-        // }
         this.currentFolder = item;
     };
     FsService.prototype.isFolder = function (item) {

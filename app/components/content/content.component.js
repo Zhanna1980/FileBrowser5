@@ -11,6 +11,12 @@ var ContentComponentController = (function () {
     ContentComponentController.prototype.getCurrentFolder = function () {
         return this.current;
     };
+    ContentComponentController.prototype.onFolderItemClick = function (item) {
+        this.fsService.setCurrentFolder(item);
+    };
+    ContentComponentController.prototype.showContextMenu = function ($event) {
+        console.log($event);
+    };
     return ContentComponentController;
 }());
 exports.ContentComponentController = ContentComponentController;

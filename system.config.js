@@ -15,4 +15,4 @@ var systemJsConfig = {
         jquery: 'node_modules/jquery/dist/jquery.js',
         angular: 'node_modules/angular/angular.js'
     }
-}
+};

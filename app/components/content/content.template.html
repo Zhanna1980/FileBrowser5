@@ -1,7 +1,10 @@
 
-
-
-
 <div ng-repeat="item in $ctrl.current.children">
-    <div class="contentItem">{{item.name}}</div>
+    <folder ng-if="item.children" class="contentItem" item="item" ng-click="$ctrl.onFolderItemClick(item)">{{item.name}}</folder>
+    <file ng-if="!item.children" class="contentItem" item="item">{{item.name}}</file>
 </div>
+
+
+<!--<div ng-repeat="item in $ctrl.current.children">-->
+    <!--<div class="contentItem">{{item.name}}</div>-->
+<!--</div>-->

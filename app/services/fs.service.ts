@@ -33,10 +33,6 @@ export class FsService {
     }
 
     setCurrentFolder (item) {
-       //const item = this.findItemById(id);
-       // if (this.isFolder(item)) {
-       //     this.currentFolder = item;
-       // }
         this.currentFolder = item;
     }
 

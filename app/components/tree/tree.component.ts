@@ -6,34 +6,54 @@ import { AppModule } from '../../app.module';
 import {FsService} from "../../services/fs.service";
 
 export class TreeComponentController {
-
+    private fsService: FsService;
     private showChildren: boolean;
-    private root: Object;
+    private state: string;
 
-    constructor(private fsService: FsService) {
+    constructor(private $rootScope: ng.IScope, fsService: FsService) {
+        this.fsService = fsService;
         this.showChildren = false;
-        this.root = fsService.getRoot();
+        this.state = "collapsed";
     }
 
-    toggleChildren() {
+    toggleChildren(folder) {
         this.showChildren = !this.showChildren;
+        this.setState(folder);
     }
 
-    onFolderNameClick(folder: any) {
+    onFolderNameClick (folder: any) {
+        console.log(this);
         this.fsService.setCurrentFolder(folder);
+    };
+
+    setState(folder) {
+        if (this.showChildren || folder.children.length == 0) {
+            this.state = "expanded";
+        }
+        else {
+            this.state = "collapsed";
+        }
     }
 
+    handleMouseDownEvents ($event, folder) {
+        if ($event.which === 1) {
+            this.onFolderNameClick(folder);
+        }
+        else if ($event.which === 3){
+            //this.showContextMenu($event);
+        }
+    }
 
-    // select(contact) {
-    //     this.contactService.activate(contact);
-    //
-    //     //this.onSelectionChanged({x: contact});
-    // }
+    showContextMenu(event: any, child?: any) {
+        // child = child || this.folder;
+        // this.$rootScope.$broadcast('showContextMenu', { event: event, id: child.id, type: child.children ? 'folder' : 'file' });
+    }
+
 }
 
 AppModule.component('tree', {
     templateUrl: 'app/components/tree/tree.template.html',
-    controller: TreeComponentController,
+    controller: ['$rootScope','fsService', TreeComponentController],
     bindings: {
         folder: "<",
     }

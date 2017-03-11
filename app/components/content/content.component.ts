@@ -16,6 +16,14 @@ export class ContentComponentController {
     getCurrentFolder() {
         return this.current;
     }
+
+    onFolderItemClick(item) {
+        this.fsService.setCurrentFolder(item);
+    }
+
+    showContextMenu($event){
+        console.log($event);
+    }
 }
 
 AppModule.component('content', {

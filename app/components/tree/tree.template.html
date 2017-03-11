@@ -1,9 +1,9 @@
 
-<div class='image' ng-click="$ctrl.toggleChildren()"></div>
-<div class="folderName" ng-click="$ctrl.onFolderNameClick($ctrl.folder)">{{$ctrl.folder.name}}</div>
+<div class='image {{$ctrl.state}}' ng-click="$ctrl.toggleChildren($ctrl.folder)"></div>
+<div class="folderName" ng-mousedown="$ctrl.handleMouseDownEvents($event, $ctrl.folder)">{{$ctrl.folder.name}}</div>
 <ul ng-if="$ctrl.showChildren">
-    <li ng-repeat="item in $ctrl.folder.children" ng-click="$ctrl.select(item)">
-        <tree ng-if="item.children" folder="item"></tree>
+    <li ng-repeat="item in $ctrl.folder.children">
+        <tree  ng-if="item.children" folder="item"></tree>
     </li>
 </ul>
 
