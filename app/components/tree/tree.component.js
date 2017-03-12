@@ -32,11 +32,12 @@ var TreeComponentController = (function () {
             this.onFolderNameClick(folder);
         }
         else if ($event.which === 3) {
+            this.showContextMenu($event, folder);
         }
     };
-    TreeComponentController.prototype.showContextMenu = function (event, child) {
-        // child = child || this.folder;
-        // this.$rootScope.$broadcast('showContextMenu', { event: event, id: child.id, type: child.children ? 'folder' : 'file' });
+    TreeComponentController.prototype.showContextMenu = function (event, folder) {
+        var menuType = folder.id == 1 ? 0 /* Root */ : 1 /* TreeFolder */;
+        this.$rootScope.$broadcast('showContextMenu', { event: event, id: folder.id, type: menuType });
     };
     return TreeComponentController;
 }());

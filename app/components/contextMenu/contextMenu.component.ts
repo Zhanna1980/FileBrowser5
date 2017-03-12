@@ -3,7 +3,7 @@ import {FsService} from "../../services/fs.service";
 /**
  * Created by zhannalibman on 02/03/2017.
  */
-const enum MenuType {
+export const enum MenuType {
     Root,
     TreeFolder,
     ContentFolder,
@@ -24,16 +24,21 @@ class ContextMenuController {
     id: number;
     private posX: number;
     private posY: number;
+    private isActive: boolean;
 
-    constructor(fsService: FsService, private $scope: ng.IScope) {
+    constructor(private $scope: ng.IScope, fsService: FsService) {
         this.fsService = fsService;
-        // $scope.$on('showContextMenu', (event, obj) => {
-        //     this.type = obj.type;
-        //     this.setMenuDataByType();
-        //     this.id = obj.id;
-        //     this.posX = obj.event.clientX;
-        //     this.posY = obj.event.clientY;
-        // });
+        $scope.$on('showContextMenu', (event, obj) => {
+            this.isActive = true;
+            this.type = obj.type;
+            this.setMenuDataByType();
+            this.id = obj.id;
+            this.posX = obj.event.clientX;
+            this.posY = obj.event.clientY;
+        });
+        $scope.$on('hideContextMenu', () => {
+            this.isActive = false;
+        });
     }
 
     private setMenuDataByType () {
@@ -84,6 +89,6 @@ class ContextMenuController {
 }
 
 AppModule.component('contextMenu', {
-    controller: ['$scope', ContextMenuController],
+    controller: ['$scope', 'fsService', ContextMenuController],
     templateUrl: 'app/components/contextMenu/contextMenu.template.html',
 });

@@ -1,4 +1,10 @@
 context-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+context-menu .menuContainer {
     display: none;
     position: absolute;
     background-color: #fff;

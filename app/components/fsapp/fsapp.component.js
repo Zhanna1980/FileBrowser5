@@ -6,10 +6,8 @@ var FsAppController = (function () {
         this.$rootScope = $rootScope;
         this.root = fsService.getRoot();
     }
-    FsAppController.prototype.showContextMenu = function ($event) {
-        if ($event.which === 3) {
-            console.log($event.target);
-        }
+    FsAppController.prototype.hideContextMenu = function () {
+        this.$rootScope.$broadcast('hideContextMenu');
     };
     return FsAppController;
 }());

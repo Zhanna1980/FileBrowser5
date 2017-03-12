@@ -4,6 +4,7 @@
 
 import { AppModule } from '../../app.module';
 import {FsService} from "../../services/fs.service";
+import {MenuType} from "../contextMenu/contextMenu.component";
 
 export class TreeComponentController {
     private fsService: FsService;
@@ -40,15 +41,14 @@ export class TreeComponentController {
             this.onFolderNameClick(folder);
         }
         else if ($event.which === 3){
-            //this.showContextMenu($event);
+            this.showContextMenu($event, folder);
         }
     }
 
-    showContextMenu(event: any, child?: any) {
-        // child = child || this.folder;
-        // this.$rootScope.$broadcast('showContextMenu', { event: event, id: child.id, type: child.children ? 'folder' : 'file' });
+    showContextMenu(event: any, folder: any) {
+        let menuType = folder.id == 1 ? MenuType.Root : MenuType.TreeFolder;
+        this.$rootScope.$broadcast('showContextMenu', { event: event, id: folder.id, type: menuType });
     }
-
 }
 
 AppModule.component('tree', {

@@ -8,12 +8,8 @@ class FsAppController {
         this.root = fsService.getRoot()
     }
 
-    showContextMenu($event) {
-        if ($event.which === 3){
-            console.log($event.target);
-        }
-
-
+    hideContextMenu() {
+        this.$rootScope.$broadcast('hideContextMenu');
     }
 }
 

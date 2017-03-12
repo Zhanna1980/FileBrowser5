@@ -1,16 +1,21 @@
 "use strict";
 var app_module_1 = require("../../app.module");
 var ContextMenuController = (function () {
-    function ContextMenuController(fsService, $scope) {
+    function ContextMenuController($scope, fsService) {
+        var _this = this;
         this.$scope = $scope;
         this.fsService = fsService;
-        // $scope.$on('showContextMenu', (event, obj) => {
-        //     this.type = obj.type;
-        //     this.setMenuDataByType();
-        //     this.id = obj.id;
-        //     this.posX = obj.event.clientX;
-        //     this.posY = obj.event.clientY;
-        // });
+        $scope.$on('showContextMenu', function (event, obj) {
+            _this.isActive = true;
+            _this.type = obj.type;
+            _this.setMenuDataByType();
+            _this.id = obj.id;
+            _this.posX = obj.event.clientX;
+            _this.posY = obj.event.clientY;
+        });
+        $scope.$on('hideContextMenu', function () {
+            _this.isActive = false;
+        });
     }
     ContextMenuController.prototype.setMenuDataByType = function () {
         switch (this.type) {
@@ -52,7 +57,7 @@ var ContextMenuController = (function () {
     return ContextMenuController;
 }());
 app_module_1.AppModule.component('contextMenu', {
-    controller: ['$scope', ContextMenuController],
+    controller: ['$scope', 'fsService', ContextMenuController],
     templateUrl: 'app/components/contextMenu/contextMenu.template.html',
 });
 //# sourceMappingURL=contextMenu.component.js.map
