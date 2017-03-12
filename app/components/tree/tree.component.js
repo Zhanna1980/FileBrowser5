@@ -15,7 +15,6 @@ var TreeComponentController = (function () {
         this.setState(folder);
     };
     TreeComponentController.prototype.onFolderNameClick = function (folder) {
-        console.log(this);
         this.fsService.setCurrentFolder(folder);
     };
     ;

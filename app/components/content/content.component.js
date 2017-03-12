@@ -4,7 +4,8 @@
 "use strict";
 var app_module_1 = require('../../app.module');
 var ContentComponentController = (function () {
-    function ContentComponentController(fsService) {
+    function ContentComponentController($rootScope, fsService) {
+        this.$rootScope = $rootScope;
         this.fsService = fsService;
         this.current = this.fsService.getCurrent();
     }
@@ -13,16 +14,32 @@ var ContentComponentController = (function () {
     };
     ContentComponentController.prototype.onFolderItemClick = function (item) {
         this.fsService.setCurrentFolder(item);
+        this.hideContextMenu();
     };
-    ContentComponentController.prototype.showContextMenu = function ($event) {
-        console.log($event);
+    ContentComponentController.prototype.handleMouseDownEvents = function ($event, item) {
+        if ($event.which === 1) {
+            if (this.fsService.isFolder(item)) {
+                this.onFolderItemClick(item);
+            }
+        }
+        else if ($event.which === 3) {
+            $event.stopPropagation();
+            this.showContextMenu($event, item);
+        }
+    };
+    ContentComponentController.prototype.showContextMenu = function (event, item) {
+        var menuType = this.fsService.isFolder(item) ? 2 /* ContentFolder */ : 3 /* ContentFile */;
+        this.$rootScope.$broadcast('showContextMenu', { event: event, id: item.id, type: menuType });
+    };
+    ContentComponentController.prototype.hideContextMenu = function () {
+        this.$rootScope.$broadcast('hideContextMenu');
     };
     return ContentComponentController;
 }());
 exports.ContentComponentController = ContentComponentController;
 app_module_1.AppModule.component('content', {
     templateUrl: 'app/components/content/content.template.html',
-    controller: ContentComponentController,
+    controller: ['$rootScope', 'fsService', ContentComponentController],
     bindings: {
         current: '<'
     }

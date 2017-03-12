@@ -23,7 +23,6 @@ export class TreeComponentController {
     }
 
     onFolderNameClick (folder: any) {
-        console.log(this);
         this.fsService.setCurrentFolder(folder);
     };
 

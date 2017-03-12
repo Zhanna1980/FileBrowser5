@@ -1,5 +1,5 @@
 <div class="container" ng-click="$ctrl.hideContextMenu()">
     <tree folder="$ctrl.root"></tree>
-    <content current = "$ctrl.fsService.getCurrent()" ></content>
+    <content current = "$ctrl.fsService.getCurrent()" ng-mousedown="$ctrl.handleMouseDownEvents($event)"></content>
 </div>
 <context-menu></context-menu>

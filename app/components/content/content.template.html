@@ -1,10 +1,5 @@
 
-<div ng-repeat="item in $ctrl.current.children">
-    <folder ng-if="item.children" class="contentItem" item="item" ng-click="$ctrl.onFolderItemClick(item)">{{item.name}}</folder>
-    <file ng-if="!item.children" class="contentItem" item="item">{{item.name}}</file>
+<div class="itemContainer" ng-repeat="item in $ctrl.current.children" ng-mousedown="$ctrl.handleMouseDownEvents($event, item)">
+    <folder ng-if="$ctrl.fsService.isFolder(item)" class="contentItem" item="item">{{item.name}}</folder>
+    <file ng-if="!$ctrl.fsService.isFolder(item)" class="contentItem" item="item">{{item.name}}</file>
 </div>
-
-
-<!--<div ng-repeat="item in $ctrl.current.children">-->
-    <!--<div class="contentItem">{{item.name}}</div>-->
-<!--</div>-->

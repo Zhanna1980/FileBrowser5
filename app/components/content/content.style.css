@@ -10,7 +10,7 @@ content {
 
 .contentItem{
     display: inline-block;
-    margin: 15px;
+    margin-top: 15px;
     text-align: center;
     cursor: pointer;
     user-select: none;
@@ -21,4 +21,9 @@ content {
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
+}
+
+.itemContainer{
+    display: inline-block;
+    margin: 0;
 }

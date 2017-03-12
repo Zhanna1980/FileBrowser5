@@ -11,6 +11,12 @@ export const enum MenuType {
     Content
 }
 
+interface ContextMenuData {
+    event: any,
+    id: number,
+    type: MenuType
+}
+
 interface MenuEntry {
     entryName: string,
     entryFunction: Function
@@ -21,14 +27,23 @@ class ContextMenuController {
     private fsService: FsService;
     private type: MenuType;
     private menuData: MenuEntry[];
-    id: number;
+    private id: number;
     private posX: number;
     private posY: number;
     private isActive: boolean;
 
+    private readonly newFolderMenuEntry: MenuEntry;
+    private readonly newFileMenuEntry: MenuEntry;
+    private readonly renameMenuEntry: MenuEntry;
+    private readonly deleteMenuEntry: MenuEntry;
+
     constructor(private $scope: ng.IScope, fsService: FsService) {
         this.fsService = fsService;
-        $scope.$on('showContextMenu', (event, obj) => {
+        this.newFolderMenuEntry = {entryName: "New folder", entryFunction: this.newFolder};
+        this.newFileMenuEntry = {entryName: "New file", entryFunction: this.newFile};
+        this.renameMenuEntry = {entryName: "Rename", entryFunction:this.rename};
+        this.deleteMenuEntry = {entryName: "Delete", entryFunction: this.delete};
+        $scope.$on('showContextMenu', (event: any, obj: ContextMenuData) => {
             this.isActive = true;
             this.type = obj.type;
             this.setMenuDataByType();
@@ -37,54 +52,55 @@ class ContextMenuController {
             this.posY = obj.event.clientY;
         });
         $scope.$on('hideContextMenu', () => {
-            this.isActive = false;
+            this.hide();
         });
     }
 
     private setMenuDataByType () {
         switch (this.type){
             case MenuType.Root:
-                this.menuData = [{entryName: "New Folder", entryFunction: this.newFolder},
-                    {entryName: "Rename", entryFunction:this.rename}];
+                this.menuData = [this.newFolderMenuEntry, this.renameMenuEntry];
                 break;
             case MenuType.TreeFolder:
-                this.menuData = [{entryName: "New Folder" , entryFunction:this.newFolder},
-                    {entryName: "Rename", entryFunction: this.rename},
-                    {entryName: "Delete", entryFunction: this.delete}];
+                this.menuData = [this.newFolderMenuEntry, this.renameMenuEntry, this.deleteMenuEntry];
                 break;
             case MenuType.ContentFolder:
-                this.menuData = [{entryName: "New Folder", entryFunction: this.newFolder},
-                    {entryName: "New file", entryFunction: this.newFile},
-                    {entryName: "Rename", entryFunction: this.rename},
-                    {entryName: "Delete", entryFunction: this.delete}];
+                this.menuData = [this.newFolderMenuEntry, this.newFileMenuEntry,
+                    this.renameMenuEntry, this.deleteMenuEntry];
                 break;
             case MenuType.ContentFile:
-                this.menuData = [{entryName: "Rename", entryFunction: this.rename},
-                    {entryName: "Delete", entryFunction: this.delete}];
+                this.menuData = [this.renameMenuEntry, this.deleteMenuEntry];
                 break;
             case MenuType.Content:
-                this.menuData = [{entryName: "New Folder", entryFunction: this.newFolder},
-                    {entryName: "New file", entryFunction: this.newFile}];
+                this.menuData = [this.newFolderMenuEntry, this.newFileMenuEntry];
                 break;
             default:
                 throw new Error ("Wrong menu type.");
         }
     }
 
-    private newFolder () {
+    private newFolder = () => {
+        this.hide();
+        console.log("New folder in folder with id", this.id);
+    };
 
-    }
+    private newFile = () => {
+        this.hide();
+        console.log("New file in folder with id", this.id);
+    };
 
-    private newFile () {
+    private rename = () => {
+        this.hide();
+        console.log("Rename item with id", this.id);
+    };
 
-    }
+    private delete = () => {
+        this.hide();
+        console.log("Delete item with id", this.id);
+    };
 
-    private rename () {
-
-    }
-
-    private delete () {
-
+    private hide () {
+        this.isActive = false;
     }
 }
 

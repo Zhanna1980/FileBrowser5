@@ -1,3 +1,3 @@
-<div class="menuContainer" ng-if="$ctrl.isActive" ng-style="{'top': $ctrl.posY + 'px','left': $ctrl.posX + 'px', 'display': 'block'}">
-    <div class='menuItem' ng-repeat="entry in $ctrl.menuData" ng-click="entry.entryFunction">{{entry.entryName}}</div>
+<div class="menuContainer" ng-if="$ctrl.isActive" ng-style="{'top': $ctrl.posY + 'px','left': $ctrl.posX + 'px'}">
+    <div class='menuItem' ng-repeat="entry in $ctrl.menuData" ng-click="entry.entryFunction()">{{entry.entryName}}</div>
 </div>
